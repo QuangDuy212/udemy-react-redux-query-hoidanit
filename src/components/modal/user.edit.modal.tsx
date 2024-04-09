@@ -27,6 +27,7 @@ const UserEditModal = (props: any) => {
             setName(dataUser?.name)
         }
     }, [dataUser])
+
     const queryClient = useQueryClient()
     const mutation = useMutation({
         mutationFn: async (payload: IUser) => {
