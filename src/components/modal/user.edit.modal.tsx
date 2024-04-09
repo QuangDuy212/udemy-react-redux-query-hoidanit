@@ -40,9 +40,10 @@ const UserEditModal = (props: any) => {
                     "Content-Type": " application/json"
                 }
             });
+            return res.json();
         },
         onSuccess: (data, variables, context) => {
-            toast('🦄 Wow so easy! create succeed');
+            toast('🦄 Wow so easy! Update succeed');
             setIsOpenUpdateModal(false);
             setEmail("");
             setName("");
