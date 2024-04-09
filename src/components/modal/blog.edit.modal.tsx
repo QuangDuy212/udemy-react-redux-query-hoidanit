@@ -3,6 +3,8 @@ import Modal from 'react-bootstrap/Modal';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { useState, useEffect } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 
 const BlogEditModal = (props: any) => {
     const { isOpenUpdateModal, setIsOpenUpdateModal, dataBlog } = props;
@@ -21,6 +23,8 @@ const BlogEditModal = (props: any) => {
         }
     }, [dataBlog])
 
+
+
     const handleSubmit = () => {
         if (!title) {
             alert("title empty");
@@ -34,7 +38,6 @@ const BlogEditModal = (props: any) => {
             alert("content empty");
             return;
         }
-        console.log({ title, author, content, id })
     }
 
     return (
