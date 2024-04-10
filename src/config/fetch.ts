@@ -32,3 +32,16 @@ export const useFetchUser = (currentPage: number) => {
         totalPages: queryInfo?.data?.totalPages ?? 0,
     }
 }
+
+export const useFetchUserDetail = (id: number) => {
+    const queryInfo = useQuery({
+        queryKey: QUERY_KEY.getUserDetail(id),
+        queryFn: (): Promise<IUser> =>
+            fetch(`http://localhost:8000/users/${id}`).then((res) =>
+                res.json(),
+            ),
+    })
+    return {
+        ...queryInfo,
+    }
+}

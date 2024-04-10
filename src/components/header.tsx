@@ -3,7 +3,6 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import { useEffect, useState } from 'react';
-import { useQueryClient, useQuery } from '@tanstack/react-query';
 import { useFetchUser } from '../config/fetch';
 
 function Header() {

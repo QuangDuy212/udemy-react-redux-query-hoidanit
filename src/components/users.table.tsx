@@ -10,7 +10,7 @@ import Popover from 'react-bootstrap/Popover';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { calculatePagesCount } from '../helper';
 import { QUERY_KEY } from '../config/key';
-import { PAGE_SIZE, useFetchUser } from '../config/fetch';
+import { PAGE_SIZE, useFetchUser, useFetchUserDetail } from '../config/fetch';
 
 interface IUser {
     id: string,
@@ -43,13 +43,7 @@ function UsersTable() {
     const PopoverComponent = forwardRef((props: any, ref: any) => {
         const { id } = props;
 
-        const { isPending, error, data } = useQuery({// gan data cho users
-            queryKey: ['fetchUser', id],
-            queryFn: (): Promise<IUser> =>
-                fetch(`http://localhost:8000/users/${id}`).then((res) =>
-                    res.json(),
-                ),
-        })
+        const { isPending, error, data } = useFetchUserDetail(id);
 
         const getBody = () => {
             if (isPending) return 'Loading detail...';
