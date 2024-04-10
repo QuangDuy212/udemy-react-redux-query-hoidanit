@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import Spinner from 'react-bootstrap/Spinner';
+import { QUERY_KEY } from '../../config/key';
 
 interface IUser {
     id: number
@@ -25,7 +26,7 @@ const UserDeleteModal = (props: any) => {
         onSuccess: (data, variables, context) => {
             toast('🦄 Wow so easy! Delete succeed');
             setIsOpenDeleteModal(false);
-            queryClient.invalidateQueries({ queryKey: ['fetchUser'] });
+            queryClient.invalidateQueries({ queryKey: QUERY_KEY.getAllUser() });
         },
     })
     const handleSubmit = () => {

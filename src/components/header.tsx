@@ -4,23 +4,12 @@ import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import { useEffect, useState } from 'react';
 import { useQueryClient, useQuery } from '@tanstack/react-query';
+import { useFetchUser } from '../config/fetch';
 
 function Header() {
 
     const [mode, setMode] = useState("light")
-
-    const [count, setCount] = useState<number>(0);
-    const { data } = useQuery({// gan data cho users
-        queryKey: ['fetchUser', 1],
-        queryFn: (): Promise<any[]> =>
-            fetch(`http://localhost:8000/users?_page=${1}&_limit=${2}`)
-                .then((res) => {
-                    const total_items = +(res.headers.get('X-Total-Count') ?? 0);
-                    setCount(total_items);
-                    return res.json()
-                }),
-    })
-
+    const { count } = useFetchUser(1);
     useEffect(() => {
         const body = document.querySelector("body");
         if (body) body.setAttribute('data-bs-theme', mode);

@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import Spinner from 'react-bootstrap/Spinner';
+import { QUERY_KEY } from '../../config/key';
 
 interface IUser {
     name: string,
@@ -39,7 +40,7 @@ const UserCreateModal = (props: any) => {
             setIsOpenCreateModal(false);
             setEmail("");
             setName("");
-            queryClient.invalidateQueries({ queryKey: ['fetchUser'] });
+            queryClient.invalidateQueries({ queryKey: QUERY_KEY.getAllUser() });
         },
     })
 
